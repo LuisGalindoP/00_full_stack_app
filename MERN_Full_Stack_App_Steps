@@ -2,7 +2,7 @@ MERN FULL APP STEPS
 
 1 - CREATE A MAIN FOLDER WITH THE NAME OF YOU APP ("myApp")
 
-2 - INSIDE THE myApp FOLDER INITITALIZE GIT
+2 - INSIDE THE myApp FOLDER INITIALIZE GIT
     git init
 
 3- INSIDE myApp FOLDER CREATE THE REACT APP WITH client NAME FOR THE FRONT END
@@ -41,3 +41,87 @@ MERN FULL APP STEPS
     npm i express
 
 9- CONNECT AND PUSH YOUR PROJECT TO GITHUB
+
+10- INSIDE client FOLDER INSTALL axios
+    npm i axios @reach/router --legacy-peer-deps
+
+11- ADD THIS FOLDERS TO THE server dir
+    config
+    models
+    controllers
+    routes
+
+12- ADD DEPENDENCIES TO server:
+    npm i express mongoose //THIS WILL INSTALL express and mongoose at the same time
+
+    //YOU CAN CHECK YOUR package.json TO SEE IF THEY ARE INSTALLED CORRECTLY AND THEIR VERSION
+
+13- ADD CORS TO THE DEPENDENCIES IN server
+    npm i cors
+
+14- CREATE YOUR BASIC SERVER FILE: (CHECK FOR THE COMMENTS INSIDE THE server.js FILE IN THIS PROJECT)
+
+        const express = require('express');
+        const cors = require('cors');
+        const app = express();
+
+    //MIDDLEWARE
+
+        app.use(express.json());
+
+        app.use(express.urlencoded({extended: true}));
+
+        app.use(cors({origin: "http://localhost:3000"}))
+
+        require("./config/mongoose.config");
+        require("./routes/game.routes")(app); //ADD ALL YOUR ROUTES
+
+        app.listen(8000, ()=>console.log("You are connected to port 8000"));
+
+
+15- INSIDE YOUR server/config DIR CREATE mongoose.config.js FILE (THIS FILE HAS ALWAYS THE SAME NAME) AND ADD THIS
+
+        const mongoose = require('mongoose');
+
+        //NAME YOUR DATABASE
+        const dbName = "games";
+
+        //IF A DB BY THIS NAME DOES NOT EXIST WHEN RUNNING IT THE FIRST TIME THIS WILL CREATE IT.
+        mongoose.connect(`mongodb://127.0.0.1/${dbName}`, { //IMPORTANT!!! USUALLY /localhost/ IS USED INSTEAD OF 127.0.0.1
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+            .then(()=>{
+                console.log(`You are connected to the ${dbName} database`);
+            })
+            .catch((err) => {
+                console.log(`There was an error, read: ${err}`)
+            });
+
+
+16- CHECK YOUR CONNECTION
+    nodemon server.js
+
+    //CONSOLE:
+    =>[nodemon] starting `node server.js`
+      You are connected to porty 8000
+      You are connected to the games database //WHERE games is the name we set for our database
+
+17- INSIDE server/models CREATE game.model.js
+
+18- CREATE OUR SCHEMA/MODEL INSIDE THE game.model.js (SEE EXAMPLE CODE INSIDE THIS PROJECT)
+
+19- CREATE A FILE game.controller.js INSIDE OUR server/controllers FOLDER
+
+20- ADD THE EXAMPLE CODE inside game.controller.js AS THE EXAMPLE IN THIS PROJECT
+    This file has all the CRUD functionality for this specific collection
+
+21- CREATE game.routes.js INSIDE server/routes
+
+22- ADD THE EXAMPLE CODE INSIDE game.routes.js
+    This file has all the HTTP requests and routes to the controller file
+
+23- CHECK YOUR REQUESTS AND RESPONSES IN POSTMAN
+
+
+
