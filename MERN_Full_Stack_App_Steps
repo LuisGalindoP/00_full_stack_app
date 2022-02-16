@@ -1,0 +1,41 @@
+MERN FULL APP STEPS
+
+1 - CREATE A MAIN FOLDER WITH THE NAME OF YOU APP ("myApp")
+
+2 - INSIDE THE myApp FOLDER INITITALIZE GIT
+    git init
+
+3- INSIDE myApp FOLDER CREATE THE REACT APP WITH client NAME FOR THE FRONT END
+    npm create-react-app client
+
+4- INSIDE myApp FOLDER CREATE A server FOLDER FOR THE BACK END
+    myApp
+        client
+        server
+
+5- CREATE A gitignore FILE INSIDE MAIN FOLDER AND ADD INSIDE THE BODY:
+    node_modules/
+
+6- INSIDE server FOLDER CREATE A server.js FILE
+
+7- INSIDE THE server FOLDER CREATE YOUR package.json
+    npm init -y
+
+    IT SHOULD LOOK LIKE THIS, IMPORTANT: "main" SHOULD BE "server.js"
+
+    {
+        "name": "server",
+        "version": "1.0.0",
+        "description": "",
+        "main": "server.js",
+        "scripts": {
+          "test": "echo \"Error: no test specified\" && exit 1",
+          "start": "node server.js"
+        },
+        "keywords": [],
+        "author": "",
+        "license": "ISC"
+      }
+
+8- INSTALL EXPRESS INSIDE server:
+    npm i express
